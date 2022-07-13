@@ -2,35 +2,18 @@ import pandas as pd
 import math
 import matplotlib.pyplot as plt
 
-ai_csv = "data/ai-total-grades-per-user.csv"
-alg_csv = "data/alg-total-grades-per-user.csv"
 
-ai_df = pd.read_csv(ai_csv)
-alg_df = pd.read_csv(alg_csv)
+alg_group_5 = pd.read_csv("data/alg_group_5.csv")
+alg_group_4 = pd.read_csv("data/alg_group_4.csv")
+alg_group_3 = pd.read_csv("data/alg_group_3.csv")
+alg_group_2 = pd.read_csv("data/alg_group_2.csv")
 
-#############################################################
+############################################################
 
-ai_group_4 = ai_df[ai_df.final >= 0.9]
-ai_group_3 = ai_df[(ai_df.final >= 0.8) & (ai_df.final < 0.9)] 
-ai_group_2 = ai_df[(ai_df.final >= 0.65) & (ai_df.final < 0.8)] 
-ai_group_1 = ai_df[(ai_df.final >= 0.5) & (ai_df.final < 0.65)]
-ai_group_0 = ai_df[ai_df.final < 0.5]
-#print(ai_group_1)
-#print(ai_group_2)
-#print(ai_group_3)
-#print(ai_group_4)
-
-#############################################################
-
-alg_group_4 = alg_df[alg_df.final >= 0.9]
-alg_group_3 = alg_df[(alg_df.final >= 0.8) & (alg_df.final < 0.9)] 
-alg_group_2 = alg_df[(alg_df.final >= 0.65) & (alg_df.final < 0.8)] 
-alg_group_1 = alg_df[(alg_df.final >= 0.5) & (alg_df.final < 0.65)]
-alg_group_0 = alg_df[alg_df.final < 0.5]
-#print(alg_group_1)
-#print(alg_group_2)
-#print(alg_group_3)
-#print(alg_group_4)
+under_alg_group_5 = pd.read_csv("data/under_alg_group_5.csv")
+under_alg_group_4 = pd.read_csv("data/under_alg_group_4.csv")
+under_alg_group_3 = pd.read_csv("data/under_alg_group_3.csv")
+under_alg_group_2 = pd.read_csv("data/under_alg_group_2.csv")
 
 ############################################################
 
@@ -42,7 +25,7 @@ def addlabels(x,y):
 
 xaxis = [2,3,4,5]
 
-alg_yaxis = [len(alg_group_1),len(alg_group_2),len(alg_group_3),len(alg_group_4)]
+alg_yaxis = [len(alg_group_2),len(alg_group_3),len(alg_group_4),len(alg_group_5)]
 
 plt.bar(xaxis, alg_yaxis) 
 addlabels(xaxis, alg_yaxis)
@@ -54,13 +37,13 @@ plt.savefig("alg-bar.png")
 
 plt.clf()
 
-ai_yaxis = [len(ai_group_1),len(ai_group_2),len(ai_group_3),len(ai_group_4)]
+under_alg_yaxis = [len(under_alg_group_2),len(under_alg_group_3),len(under_alg_group_4),len(under_alg_group_5)]
 
-plt.bar(xaxis, ai_yaxis) 
-addlabels(xaxis, ai_yaxis)
+plt.bar(xaxis, under_alg_yaxis) 
+addlabels(xaxis, under_alg_yaxis)
 plt.xticks(xaxis)
-plt.title("AI course")
+plt.title("Undergradute Algorithms course")
 plt.ylabel("Number of students")
 plt.xlabel("Grade")
-plt.savefig("ai-bar.png")
+plt.savefig("under-alg-bar.png")
 

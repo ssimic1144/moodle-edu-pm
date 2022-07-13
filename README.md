@@ -21,7 +21,17 @@ are required to create sufficient process traces. Key attributes for each course
 
 With courses selected, we can perform analysis of student grades based on the
 number of times they interacted with Moodle LMS. Students are devided into 
-five groups. The first group is composed of students with final grade >= 90%,
+four groups. The first group is composed of students with final grade >= 90%,
 the second 80% <= final grade < 90%, the third group 65% <= final grade < 80% 
-the forth group 50% <= final grade < 65%,
-and the last group are students who failed the course, that is final grade < 50%
+and the last group are students with 50% <= final grade < 65%.
+
+#### 2.1. step
+
+Before performing analysis based on the number of times students
+interacted with LMS, visuzalition of different groups has been done. 
+Data visualization, as one of the crucial step in every data analysis, allows 
+a convenient way to observe data dispersion among different groups.
+
+#### 2.2 step
+
+Creating plots with number of students interactions based on their grades.
