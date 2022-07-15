@@ -73,6 +73,21 @@ under_alg_df = under_alg_df[under_alg_df.timecreated > boundary_date[0]]
 alg_df = alg_df[["courseid","eventname","timecreated","userid"]]
 under_alg_df = under_alg_df[["courseid","eventname","timecreated","userid"]]
 
+#Ending filters
+
+# Remove non student ids
+alg_df = alg_df[~alg_df.userid.isin([77,72,2,0])]
+under_alg_df = under_alg_df[~under_alg_df.userid.isin([77,72,2,0])]
+
+# Cosmetic stuff for activities
+alg_df["eventname"] = alg_df.eventname.str.split("\\").str[-1]
+under_alg_df["eventname"] = under_alg_df.eventname.str.split("\\").str[-1]
+
+
+# Drop attendance from dataset
+#alg_df = alg_df[alg_df.eventname != "attendance_taken_by_student"]
+#under_alg_df = under_alg_df[under_alg_df.eventname != "attendance_taken_by_student"]
+
 # Create csvs
 alg_df.to_csv("data/alg.csv", index=False)
 under_alg_df.to_csv("data/under_alg.csv", index=False)

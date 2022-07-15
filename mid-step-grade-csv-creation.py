@@ -12,6 +12,13 @@ grade_items_csv = "mdl_grade_items.csv"
 
 grade_items_full_df = pd.read_csv(raw_data_dir+"/"+grade_items_csv)
 
+grade_items_full_df["timemodified"] = pd.to_datetime(grade_items_full_df["timemodified"], unit="s")
+
+# Boundary date
+boundary_date = pd.date_range(start="2021-10-1",end="2021-10-2",periods=1)
+# Limit DF based on boundary date
+grade_items_full_df = grade_items_full_df[grade_items_full_df.timemodified > boundary_date[0]]
+
 # Get course specific grade items
 alg_gi_df = grade_items_full_df[grade_items_full_df.courseid == 5002]
 under_alg_gi_df = grade_items_full_df[grade_items_full_df.courseid == 4720]
@@ -28,6 +35,13 @@ under_alg_helper.append(under_alg_gi_df)
 grade_items_history_csv = "mdl_grade_items_history.csv"
 
 grade_items_full_df = pd.read_csv(raw_data_dir+"/"+grade_items_history_csv)
+
+grade_items_full_df["timemodified"] = pd.to_datetime(grade_items_full_df["timemodified"], unit="s")
+
+# Boundary date
+boundary_date = pd.date_range(start="2021-10-1",end="2021-10-2",periods=1)
+# Limit DF based on boundary date
+grade_items_full_df = grade_items_full_df[grade_items_full_df.timemodified > boundary_date[0]]
 
 # Get course specific grade items
 alg_gi_df = grade_items_full_df[grade_items_full_df.courseid == 5002]
@@ -52,6 +66,11 @@ grade_outcomes_csv = "mdl_grade_grades.csv"
 
 grade_out_partial_df = pd.read_csv(raw_data_dir+"/"+grade_outcomes_csv)
 
+grade_out_partial_df["timemodified"] = pd.to_datetime(grade_out_partial_df["timemodified"], unit="s")
+
+# Limit DF based on boundary date
+grade_out_partial_df = grade_out_partial_df[grade_out_partial_df.timemodified > boundary_date[0]]
+
 # Get outcomes for specific course item
 alg_out_df = grade_out_partial_df[grade_out_partial_df.itemid.isin(alg_gi_df)]
 under_alg_out_df = grade_out_partial_df[grade_out_partial_df.itemid.isin(under_alg_gi_df)]
@@ -69,6 +88,10 @@ chunksize = 10**6
 
 with pd.read_csv(raw_data_dir+"/"+big_stuff, chunksize=chunksize) as reader:
     for chunk in reader:
+        chunk["timemodified"] = pd.to_datetime(chunk["timemodified"], unit="s")
+        # Limit DF based on boundary date
+        chunk = chunk[chunk.timemodified > boundary_date[0]]
+        # Add to helper
         alg_helper.append(chunk[chunk.itemid.isin(alg_gi_df)])
         under_alg_helper.append(chunk[chunk.itemid.isin(under_alg_gi_df)])
         print(len(alg_helper))

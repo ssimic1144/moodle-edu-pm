@@ -7,6 +7,7 @@ alg_group_5 = pd.read_csv("data/alg_group_5.csv")
 alg_group_4 = pd.read_csv("data/alg_group_4.csv")
 alg_group_3 = pd.read_csv("data/alg_group_3.csv")
 alg_group_2 = pd.read_csv("data/alg_group_2.csv")
+alg_group_1 = pd.read_csv("data/alg_group_1.csv")
 
 ############################################################
 
@@ -14,6 +15,7 @@ under_alg_group_5 = pd.read_csv("data/under_alg_group_5.csv")
 under_alg_group_4 = pd.read_csv("data/under_alg_group_4.csv")
 under_alg_group_3 = pd.read_csv("data/under_alg_group_3.csv")
 under_alg_group_2 = pd.read_csv("data/under_alg_group_2.csv")
+under_alg_group_1 = pd.read_csv("data/under_alg_group_1.csv")
 
 ############################################################
 
@@ -23,9 +25,9 @@ def addlabels(x,y):
 
 ############################################################
 
-xaxis = [2,3,4,5]
+xaxis = [1,2,3,4,5]
 
-alg_yaxis = [len(alg_group_2),len(alg_group_3),len(alg_group_4),len(alg_group_5)]
+alg_yaxis = [len(alg_group_1),len(alg_group_2),len(alg_group_3),len(alg_group_4),len(alg_group_5)]
 
 plt.bar(xaxis, alg_yaxis) 
 addlabels(xaxis, alg_yaxis)
@@ -37,7 +39,7 @@ plt.savefig("alg-bar.png")
 
 plt.clf()
 
-under_alg_yaxis = [len(under_alg_group_2),len(under_alg_group_3),len(under_alg_group_4),len(under_alg_group_5)]
+under_alg_yaxis = [len(under_alg_group_1),len(under_alg_group_2),len(under_alg_group_3),len(under_alg_group_4),len(under_alg_group_5)]
 
 plt.bar(xaxis, under_alg_yaxis) 
 addlabels(xaxis, under_alg_yaxis)
